@@ -1,71 +1,73 @@
 # Blockchain Labs - Semester 2
 
-This repository contains blockchain development labs using Hardhat, focusing on smart contract development and deployment on Ethereum.
+A comprehensive collection of blockchain development labs focusing on smart contract development, deployment, and testing using modern blockchain technologies.
 
-## 📋 Lab 2: ERC-20 Token Implementation
+## 📚 Repository Structure
 
-This lab demonstrates the implementation of a basic ERC-20 token smart contract using Hardhat and Solidity.
-
-### 🔧 Tech Stack
-
-- **Hardhat**: Development environment for Ethereum software
-- **Solidity**: ^0.8.24
-- **Node.js**: Runtime environment
-- **Ethers.js**: Ethereum library for blockchain interactions
-
-### 📁 Project Structure
+This repository is organized by lab number. Each lab focuses on specific blockchain concepts and implementations.
 
 ```
-lab2/
-├── contracts/          # Smart contracts
-│   └── Token.sol      # ERC-20 Token contract
-├── scripts/           # Deployment scripts
-│   └── deploy.js      # Token deployment script
-├── test/              # Test files
-│   └── Token.js       # Token contract tests
-├── hardhat.config.js  # Hardhat configuration
-└── package.json       # Project dependencies
+blockchain-sem2/
+├── README.md           # This file
+└── lab2/              # ERC-20 Token Implementation
+    ├── contracts/
+    ├── scripts/
+    ├── test/
+    └── README.md
 ```
 
-### 🚀 Getting Started
+## 🔬 Labs
 
-#### Prerequisites
+### [Lab 2: ERC-20 Token Implementation](./lab2/)
 
-- Node.js (v14 or higher)
-- npm or yarn
+Implementation of a custom ERC-20 token using Hardhat and Solidity.
 
-#### Installation
+**Topics Covered:**
+- Smart contract development with Solidity
+- ERC-20 token standard
+- Hardhat development environment
+- Smart contract testing
+- Deployment scripts
 
-1. Clone the repository:
+**Tech Stack:** Hardhat, Solidity 0.8.24, Ethers.js
+
+👉 **[View Lab 2 Details](./lab2/README.md)**
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v14 or higher)
+- **npm** or **yarn**
+- **Git**
+
+### Clone the Repository
+
 ```bash
 git clone https://github.com/testing-archit/blockchain-labs-sem2.git
-cd blockchain-labs-sem2/lab2
+cd blockchain-sem2
 ```
 
-2. Install dependencies:
+### Navigate to a Specific Lab
+
+Each lab has its own README with specific setup instructions:
+
 ```bash
+# For Lab 2
+cd lab2
 npm install
+npx hardhat test
 ```
 
-### 💡 Features
+## 🛠️ Common Commands
 
-The `Token.sol` contract includes:
-
-- **Token Details**:
-  - Name: My Hardhat Token
-  - Symbol: MHT
-  - Total Supply: 1,000,000 tokens
-
-- **Core Functions**:
-  - `transfer(address to, uint256 amount)`: Transfer tokens to another address
-  - `balanceOf(address account)`: Check the token balance of an account
-  - Event emission for transfer tracking
-
-### 🧪 Available Commands
+Most labs use Hardhat. Here are common commands you'll use:
 
 ```bash
-# Display available Hardhat commands
-npx hardhat help
+# Install dependencies
+npm install
 
 # Run tests
 npx hardhat test
@@ -73,79 +75,58 @@ npx hardhat test
 # Run tests with gas reporting
 REPORT_GAS=true npx hardhat test
 
-# Start a local Hardhat node
+# Start local Hardhat node
 npx hardhat node
 
-# Deploy the contract
+# Deploy contracts
 npx hardhat run scripts/deploy.js
 
-# Deploy using Hardhat Ignition (if configured)
-npx hardhat ignition deploy ./ignition/modules/Lock.js
+# Get help
+npx hardhat help
 ```
 
-### 🧪 Running Tests
+## 📖 Learning Path
 
-The project includes comprehensive tests for the Token contract:
+1. **Lab 2** - Start with basic ERC-20 token implementation to understand:
+   - Smart contract structure
+   - State variables and functions
+   - Events and modifiers
+   - Testing smart contracts
+   - Deployment process
 
-```bash
-npx hardhat test
-```
+More labs coming soon...
 
-Tests verify:
-- ✅ Total supply is correctly assigned to the owner
-- ✅ Token transfers work correctly between accounts
+## 🔐 Security Note
 
-### 📝 Smart Contract Overview
+⚠️ **Educational Purpose Only**: These contracts are designed for learning purposes. Do not use them in production without proper security audits and additional safeguards.
 
-#### Token.sol
-
-The Token contract is a simplified ERC-20 implementation that demonstrates:
-
-1. **State Variables**:
-   - Token name, symbol, and total supply
-   - Owner address
-   - Balance mapping for all addresses
-
-2. **Constructor**:
-   - Assigns total supply to the deployer's address
-   - Sets the contract deployer as the owner
-
-3. **Transfer Function**:
-   - Validates sufficient balance before transfer
-   - Updates sender and recipient balances
-   - Emits Transfer event
-
-4. **Balance Query**:
-   - Read-only function to check account balances
-
-### 🔐 Security Considerations
-
-This is a basic educational implementation. For production use, consider:
-- Implementing full ERC-20 standard (approve, transferFrom, allowance)
-- Adding access control mechanisms
-- Implementing SafeMath or using Solidity 0.8+ built-in overflow protection
-- Conducting professional security audits
-
-### 📚 Learning Objectives
-
-- Understanding smart contract development workflow
-- Working with Hardhat development environment
-- Implementing basic token functionality
-- Writing and running smart contract tests
-- Deploying contracts to local and test networks
-
-### 🤝 Contributing
-
-This is a learning repository. Feel free to fork and experiment!
-
-### 📄 License
+## 📝 License
 
 ISC
 
-### 👨‍💻 Author
+## 👨‍💻 Author
 
-Archit
+**Archit**
+
+- GitHub: [@testing-archit](https://github.com/testing-archit)
+- Repository: [blockchain-labs-sem2](https://github.com/testing-archit/blockchain-labs-sem2)
+
+## 🤝 Contributing
+
+This is a learning repository. Feel free to:
+- Fork the repository
+- Experiment with the code
+- Add your own improvements
+- Create pull requests with enhancements
+
+## 📚 Resources
+
+- [Hardhat Documentation](https://hardhat.org/docs)
+- [Solidity Documentation](https://docs.soliditylang.org/)
+- [Ethers.js Documentation](https://docs.ethers.org/)
+- [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts)
 
 ---
 
-**Note**: This project is for educational purposes as part of Blockchain course work (Semester 2).
+**Last Updated:** January 2026  
+**Course:** Blockchain Development - Semester 2
