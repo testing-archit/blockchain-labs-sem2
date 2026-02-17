@@ -1,0 +1,18 @@
+{
+  "name": "lab5",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "dotenv": "^17.2.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3",
+    "ethers": "^6",
+    "hardhat": "^2.22.0"
+  }
+}
