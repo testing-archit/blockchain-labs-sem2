@@ -1,7 +1,7 @@
 // Contract ABI and deployed address helper
 // After deploying, update CONTRACT_ADDRESS with the actual address
 
-export const CONTRACT_ADDRESS = "0xEa0d691c35bC5513778815E0D599b9f37A50d6d5";
+export const CONTRACT_ADDRESS = "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9";
 
 export const CONTRACT_ABI = [
     {

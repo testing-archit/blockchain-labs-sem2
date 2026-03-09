@@ -24,7 +24,7 @@ contract Storage {
     }
 
     constructor() {
-        owner = 0xc8446ADb14Ad0684A31CeF01CA3127EB4Ac17C02;
+        owner = msg.sender;
     }
 
     /// @notice Set a new value (owner or authorized user)

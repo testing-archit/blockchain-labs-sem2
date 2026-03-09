@@ -1,37 +1,40 @@
-# Blockchain Labs - Semester 2
+# Blockchain Labs — Semester 2
 
 A comprehensive collection of blockchain development labs focusing on smart contract development, deployment, and testing using modern blockchain technologies.
 
 ## 📚 Repository Structure
 
-This repository is organized by lab number. Each lab focuses on specific blockchain concepts and implementations.
-
 ```
 blockchain-sem2/
-├── README.md           # This file
-└── lab2/              # ERC-20 Token Implementation
-    ├── contracts/
-    ├── scripts/
-    ├── test/
-    └── README.md
+├── lab2/   ERC-20 Token Implementation
+├── lab3/   Smart Contract Security & Deployment
+├── lab4/   Web3.js Blockchain Interactions
+├── lab5/   Storage DApp (Hardhat + React)
+├── lab6/   University Credentials DApp
+└── README.md
 ```
 
 ## 🔬 Labs
 
 ### [Lab 2: ERC-20 Token Implementation](./lab2/)
+Custom ERC-20 token built with Hardhat and Solidity.
+**Topics:** ERC-20 standard, token minting, transfer, allowances, Hardhat testing.
 
-Implementation of a custom ERC-20 token using Hardhat and Solidity.
+### [Lab 3: Smart Contract Security & Deployment](./lab3/)
+Smart contract with vulnerability analysis and Sepolia testnet deployment.
+**Topics:** Solidity security, reentrancy, access control, Etherscan verification.
 
-**Topics Covered:**
-- Smart contract development with Solidity
-- ERC-20 token standard
-- Hardhat development environment
-- Smart contract testing
-- Deployment scripts
+### [Lab 4: Web3.js Blockchain Interactions](./lab4/)
+8 hands-on tasks exploring the Sepolia testnet with Web3.js.
+**Topics:** Block/transaction inspection, account balances, sending ETH, gas analysis, event subscriptions.
 
-**Tech Stack:** Hardhat, Solidity 0.8.24, Ethers.js
+### [Lab 5: Storage DApp](./lab5/)
+Full-stack DApp with a role-based Storage contract and React frontend.
+**Topics:** Access control, allowlists, ownership transfer, MetaMask integration.
 
-👉 **[View Lab 2 Details](./lab2/README.md)**
+### [Lab 6: University Credentials DApp](./lab6/)
+Decentralised credential management system with admin issuance and on-chain verification.
+**Topics:** Struct mappings, credential hashing, admin access control, React frontend.
 
 ---
 
@@ -39,9 +42,10 @@ Implementation of a custom ERC-20 token using Hardhat and Solidity.
 
 ### Prerequisites
 
-- **Node.js** (v14 or higher)
-- **npm** or **yarn**
+- **Node.js** (v14+) / **Bun**
+- **npm**
 - **Git**
+- **MetaMask** (for DApp labs)
 
 ### Clone the Repository
 
@@ -50,83 +54,27 @@ git clone https://github.com/testing-archit/blockchain-labs-sem2.git
 cd blockchain-sem2
 ```
 
-### Navigate to a Specific Lab
-
-Each lab has its own README with specific setup instructions:
-
-```bash
-# For Lab 2
-cd lab2
-npm install
-npx hardhat test
-```
+Each lab has its own README with setup instructions — navigate into a lab folder to get started.
 
 ## 🛠️ Common Commands
 
-Most labs use Hardhat. Here are common commands you'll use:
-
 ```bash
-# Install dependencies
-npm install
-
-# Run tests
-npx hardhat test
-
-# Run tests with gas reporting
-REPORT_GAS=true npx hardhat test
-
-# Start local Hardhat node
-npx hardhat node
-
-# Deploy contracts
-npx hardhat run scripts/deploy.js
-
-# Get help
-npx hardhat help
+npm install                # Install dependencies
+npx hardhat compile        # Compile contracts
+npx hardhat test           # Run tests
+npx hardhat node           # Start local node
+npx hardhat run scripts/deploy.js --network localhost
 ```
-
-## 📖 Learning Path
-
-1. **Lab 2** - Start with basic ERC-20 token implementation to understand:
-   - Smart contract structure
-   - State variables and functions
-   - Events and modifiers
-   - Testing smart contracts
-   - Deployment process
-
-More labs coming soon...
 
 ## 🔐 Security Note
 
-⚠️ **Educational Purpose Only**: These contracts are designed for learning purposes. Do not use them in production without proper security audits and additional safeguards.
-
-## 📝 License
-
-ISC
+⚠️ **Educational Purpose Only** — These contracts are for learning. Do not use in production without proper audits.
 
 ## 👨‍💻 Author
 
-**Archit**
-
-- GitHub: [@testing-archit](https://github.com/testing-archit)
-- Repository: [blockchain-labs-sem2](https://github.com/testing-archit/blockchain-labs-sem2)
-
-## 🤝 Contributing
-
-This is a learning repository. Feel free to:
-- Fork the repository
-- Experiment with the code
-- Add your own improvements
-- Create pull requests with enhancements
-
-## 📚 Resources
-
-- [Hardhat Documentation](https://hardhat.org/docs)
-- [Solidity Documentation](https://docs.soliditylang.org/)
-- [Ethers.js Documentation](https://docs.ethers.org/)
-- [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts)
+**Archit** — [@testing-archit](https://github.com/testing-archit)
 
 ---
 
-**Last Updated:** January 2026  
-**Course:** Blockchain Development - Semester 2
+**Last Updated:** March 2026
+**Course:** Blockchain Development — Semester 2

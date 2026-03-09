@@ -37,6 +37,7 @@ function App() {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState("");
+  const [chainId, setChainId] = useState("");
   const [contractOwner, setContractOwner] = useState("");
   const [storedValue, setStoredValue] = useState("—");
   const [newValue, setNewValue] = useState("");
@@ -77,6 +78,13 @@ function App() {
       const chainId = await provider.request({ method: "eth_chainId" });
       const sepoliaChainId = "0xaa36a7"; // 11155111
       const localhostChainId = "0x7a69"; // 31337
+
+      setChainId(parseInt(chainId).toString());
+
+      // Strict check for Localhost if that's our target (or just warn)
+      if (chainId !== localhostChainId) {
+        // We allow it to proceed but UI will show mismatch if contract is missing
+      }
 
       if (chainId !== sepoliaChainId && chainId !== localhostChainId) {
         setError("Wrong Network! Please connect to Sepolia or Localhost.");
@@ -208,10 +216,16 @@ function App() {
       // Most EIP-1193 providers support 'on'
       web3.currentProvider.on("accountsChanged", handleAccountsChanged);
 
+      const handleChainChanged = (_chainId) => {
+        // We recommend reloading the page, unless you must do otherwise
+        window.location.reload();
+      };
+      web3.currentProvider.on("chainChanged", handleChainChanged);
+
       return () => {
-        // Some providers (like older MetaMask) might need removeListener
         if (web3.currentProvider.removeListener) {
           web3.currentProvider.removeListener("accountsChanged", handleAccountsChanged);
+          web3.currentProvider.removeListener("chainChanged", handleChainChanged);
         }
       };
     }
@@ -370,6 +384,42 @@ function App() {
     }
   };
 
+  // --- Switch Network Helper ---
+  const switchNetwork = async () => {
+    if (!window.ethereum) return;
+    try {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x7a69" }], // Localhost 31337
+      });
+    } catch (err) {
+      // This error code indicates that the chain has not been added to MetaMask.
+      if (err.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: '0x7a69',
+                chainName: 'Localhost 8545',
+                rpcUrls: ['http://127.0.0.1:8545/'],
+                nativeCurrency: {
+                  name: 'ETH',
+                  symbol: 'ETH',
+                  decimals: 18
+                }
+              }
+            ]
+          });
+        } catch (addError) {
+          setError("Could not add Localhost network.");
+        }
+      } else {
+        setError("Failed to switch: " + err.message);
+      }
+    }
+  };
+
   // --- Not connected screen ---
   if (!account) {
     return (
@@ -434,10 +484,26 @@ function App() {
           <span className="account">
             {account}
           </span>
+          <span className="label" style={{ marginLeft: 10 }}>Net:</span>
+          <span className="account" style={{ fontSize: "0.8rem", color: "#ddd" }}>
+            {chainId === "31337" ? "Localhost" : (chainId === "11155111" ? "Sepolia" : "Unknown (" + chainId + ")")}
+          </span>
           <span className={`owner-badge ${isOwner ? "is-owner" : (isAuthorized ? "is-authorized" : "not-owner")}`}>
             {isOwner ? "👑 Owner" : (isAuthorized ? "✅ Authorized" : "👤 User")}
           </span>
         </div>
+
+        {chainId !== "31337" && (
+          <div className="error-toast" style={{ marginBottom: 20, justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span className="error-icon">⚠️</span>
+              <span>You are on the wrong network (Sepolia). Please switch to Localhost.</span>
+            </div>
+            <button onClick={switchNetwork} className="btn btn-sm btn-primary">
+              Switch to Localhost
+            </button>
+          </div>
+        )}
 
         {/* Main Grid */}
         <div className="grid">
