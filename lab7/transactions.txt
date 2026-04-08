@@ -1,0 +1,14 @@
+Lab 7 - ERC20 Token Assessment
+Transaction Hashes on Sepolia Testnet
+
+Token Address: 0x8A33f21638173377B57eB3C7FAcbeDCb79a0Ab58
+
+1. Transfer 100 tokens to `0xf16095EEFBA8B88fe92180c1aca76B17ea68B101`
+Tx Hash: 0x79febf35c08d292b07e2438be39ea5ba70f2a5a757c85fa16a4c63962ce31464
+
+2. Approve neighbor wallet (dummy account `0xb5E450c81F314321BB4079E9d9b3674Ad6a467cF` funded by owner)
+Tx Hash: 0x276926327c0c42ed25dec013de21ac6d76cfa92a53518f050d18bb87633320e6
+(Fund Tx Hash: 0x951d30bf626cbd734f759702db49822bb095fc6305a57e45240a8cdaec10676d)
+
+3. TransferFrom 50 tokens by neighbor to receiver `0x5FbDB2315678afecb367f032d93F642f64180aa3`
+Tx Hash: 0xc0768414ccf072d9e71d97c6d0b2e15a522fa96f42f5f25ae7483dcac18e5c3f

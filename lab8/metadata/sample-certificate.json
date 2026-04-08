@@ -1,0 +1,11 @@
+{
+  "name": "Blockchain Engineering Lab 8 Certificate",
+  "description": "Official credential for Semester 2 labs, permanently stored on IPFS.",
+  "image": "ipfs://bafybeicertificateimageexampleaaaaaaaaaaaaaaaaaaaaaaaa",
+  "external_url": "https://example.edu/certificates/lab8",
+  "attributes": [
+    { "trait_type": "Program", "value": "Blockchain Engineering" },
+    { "trait_type": "Cohort", "value": "Spring 2024" },
+    { "trait_type": "Status", "value": "Completed" }
+  ]
+}
