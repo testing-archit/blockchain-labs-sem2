@@ -1,70 +1,16 @@
-# VaultStay: Web3 Escrow & IPFS Storage (Lab 10)
+# React + Vite
 
-VaultStay is a premium decentralized application (DApp) that combines Ethereum smart contracts with IPFS for secure, encrypted file storage and escrow-based property rentals.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
+Currently, two official plugins are available:
 
-- **Decentralized Storage**: Upload files to IPFS with automatic encryption.
-- **Smart Contract Escrow**: Secure payments and rental agreements handled on-chain.
-- **AES-256 Encryption**: Client-side encryption ensures data privacy before it ever reaches IPFS.
-- **Vite-powered Frontend**: A modern, responsive UI for managing listings and storage.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Project Structure
+## React Compiler
 
-- **`contracts/`**: Solidity smart contracts (`IPFSStorage.sol`) for handling file CIDs and escrow logic.
-- **`ipfs-storage/`**: The main application folder.
-  - **`src/`**: React frontend built with Vite.
-  - **`backend/`**: Express server acting as a gateway for IPFS pinning and encryption utilities.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Getting Started
+## Expanding the ESLint configuration
 
-### 1. Smart Contract Deployment
-
-1. Install root dependencies:
-   ```bash
-   npm install
-   ```
-
-2. Compile and deploy the contract:
-   ```bash
-   npx hardhat compile
-   npx hardhat run scripts/deploy.js --network localhost
-   ```
-
-### 2. IPFS Gateway (Backend)
-
-1. Navigate to the backend:
-   ```bash
-   cd ipfs-storage/backend
-   npm install
-   ```
-
-2. Configure `.env` with your IPFS (Pinata/Infura) credentials.
-
-3. Start the server:
-   ```bash
-   npm start
-   ```
-
-### 3. Frontend
-
-1. Navigate to the frontend:
-   ```bash
-   cd ipfs-storage
-   npm install
-   ```
-
-2. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-## Technologies Used
-
-- **Solidity**: Smart contract logic.
-- **Hardhat**: Development and testing framework.
-- **React & Vite**: Frontend UI.
-- **Ethers.js v6**: Web3 integration.
-- **IPFS**: Decentralized file storage.
-- **CryptoJS**: AES-256 encryption.
-- **Express**: Middleware gateway.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
