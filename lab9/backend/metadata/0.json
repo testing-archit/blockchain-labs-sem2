@@ -1,0 +1,9 @@
+{
+  "name": "Gold Coin",
+  "description": "Fungible gold currency for the RPG game.",
+  "image": "ipfs://QmYourImageHashForGold",
+  "properties": {
+    "type": "currency",
+    "value": 1
+  }
+}

@@ -1,6 +1,6 @@
 # ArchitToken (Lab 7) - ERC20 Token DApp
 
-This project demonstrates a full-stack decentralized application (DApp) for an ERC20 token named **ArchitToken (AT)**. It includes the Ethereum smart contract written in Solidity, Hardhat scripts for deployment and interaction, and a React-based frontend frontend to interact with the token on the Sepolia testnet.
+This project demonstrates a full-stack decentralized application (DApp) for an ERC20 token named **ArchitToken (AT)**. It includes the Ethereum smart contract written in Solidity, Hardhat scripts for deployment and interaction, and a React-based frontend to interact with the token on the Sepolia testnet.
 
 ## Project Structure
 

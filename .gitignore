@@ -19,6 +19,12 @@ ignition/deployments/chain-31337
 
 # Editor / tooling
 .cursor
+dist
+build
+out
+.cache
+.parcel-cache
 
 # Lock files (optional)
 bun.lock
+package-lock.json

@@ -1,13 +1,14 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
-const INFURA_API_KEY = "86edeec464904ef0a823de6a7e32d37b";
-const SEPOLIA_PRIVATE_KEY = "93a0ab8a1035aa94b9640b278b5ff89abf56518734945a22b5f0520e9cf738b4";
+const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || "https://sepolia.infura.io/v3/default_api_key";
+const SEPOLIA_PRIVATE_KEY = process.env.PRIVATE_KEY || "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
 
 module.exports = {
   solidity: "0.8.23",
   networks: {
     sepolia: {
-      url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
+      url: SEPOLIA_RPC_URL,
       accounts: [SEPOLIA_PRIVATE_KEY],
     },
   },

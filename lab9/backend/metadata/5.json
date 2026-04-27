@@ -1,0 +1,9 @@
+{
+  "name": "Legendary Reward Trophy",
+  "description": "An exclusive 1-of-1 Non-Fungible Token for the ultimate winner.",
+  "image": "ipfs://QmYourImageHashForLegendaryReward",
+  "properties": {
+    "type": "prize",
+    "rarity": "Legendary"
+  }
+}

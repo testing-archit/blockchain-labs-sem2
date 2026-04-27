@@ -20,28 +20,27 @@ async function main() {
 
   // --- Perform Token Transfers (Transactions) ---
   // Generate two random addresses to send tokens to
-  const wallet1 = ethers.Wallet.createRandom();
-  const wallet2 = ethers.Wallet.createRandom();
+  const [owner, addr1, addr2] = await ethers.getSigners();
 
-  console.log("\n=== Transaction 1: Transfer 100 MHT ===");
-  console.log("To:", wallet1.address);
-  const tx1 = await token.transfer(wallet1.address, 100);
+  console.log("\n=== Transaction 1: Transfer 100 MHT (Owner -> Addr1) ===");
+  console.log("From (Owner):", owner.address);
+  console.log("To (Addr1):", addr1.address);
+  const tx1 = await token.transfer(addr1.address, 100);
   const receipt1 = await tx1.wait();
   console.log("Tx Hash:", receipt1.hash);
-  console.log("Etherscan: https://sepolia.etherscan.io/tx/" + receipt1.hash);
 
-  console.log("\n=== Transaction 2: Transfer 200 MHT ===");
-  console.log("To:", wallet2.address);
-  const tx2 = await token.transfer(wallet2.address, 200);
+  console.log("\n=== Transaction 2: Transfer 50 MHT (Addr1 -> Addr2) ===");
+  console.log("From (Addr1):", addr1.address);
+  console.log("To (Addr2):", addr2.address);
+  const tx2 = await token.connect(addr1).transfer(addr2.address, 50);
   const receipt2 = await tx2.wait();
   console.log("Tx Hash:", receipt2.hash);
-  console.log("Etherscan: https://sepolia.etherscan.io/tx/" + receipt2.hash);
 
   // Final balances
   console.log("\n=== Final Balances ===");
-  console.log("Deployer:", (await token.balanceOf(deployer.address)).toString(), "MHT");
-  console.log("Wallet 1:", (await token.balanceOf(wallet1.address)).toString(), "MHT");
-  console.log("Wallet 2:", (await token.balanceOf(wallet2.address)).toString(), "MHT");
+  console.log("Deployer:", (await token.balanceOf(owner.address)).toString(), "MHT");
+  console.log("Addr1:", (await token.balanceOf(addr1.address)).toString(), "MHT");
+  console.log("Addr2:", (await token.balanceOf(addr2.address)).toString(), "MHT");
 }
 
 main().catch((error) => {

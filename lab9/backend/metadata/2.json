@@ -1,0 +1,9 @@
+{
+  "name": "Iron Sword",
+  "description": "A fungible weapon item for the RPG game.",
+  "image": "ipfs://QmYourImageHashForSword",
+  "properties": {
+    "type": "weapon",
+    "damage": 10
+  }
+}
