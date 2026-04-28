@@ -1,49 +1,45 @@
+const { ethers } = require("hardhat");
+const fs = require("fs");
+const path = require("path");
+
 async function main() {
   const [deployer] = await ethers.getSigners();
-
-  console.log("Deploying with account:", deployer.address);
-  console.log("Account balance:", (await ethers.provider.getBalance(deployer.address)).toString());
-
-  // Deploy the Token contract
-  const token = await ethers.deployContract("Token");
+  // Create real, valid Ethereum addresses on the fly for the test targets
+  const addr1 = ethers.Wallet.createRandom();
+  const addr2 = ethers.Wallet.createRandom();
+  const Token = await ethers.getContractFactory("Token");
+  const token = await Token.deploy();
   await token.waitForDeployment();
 
-  const tokenAddress = await token.getAddress();
-  console.log("\n=== Deployment ===");
-  console.log("Token deployed at:", tokenAddress);
-  console.log("Etherscan: https://sepolia.etherscan.io/address/" + tokenAddress);
+  const address = await token.getAddress();
+  console.log("Token deployed to:", address);
 
-  // Show deployer's initial balance
-  const totalSupply = await token.totalSupply();
-  console.log("\nTotal Supply:", totalSupply.toString(), "MHT");
-  console.log("Deployer balance:", (await token.balanceOf(deployer.address)).toString(), "MHT");
+  // --- SAVE TO FRONTEND .env ---
+  const frontendEnvPath = path.join(__dirname, "..", "frontend", ".env");
+  fs.writeFileSync(frontendEnvPath, `VITE_CONTRACT_ADDRESS=${address}\n`);
+  console.log("✅ Contract address saved to frontend/.env");
 
-  // --- Perform Token Transfers (Transactions) ---
-  // Generate two random addresses to send tokens to
-  const [owner, addr1, addr2] = await ethers.getSigners();
+  // Transaction 1: Success
+  console.log("\n--- Transaction 1: Transferring to Addr1 ---");
+  const tx1 = await token.transfer(addr1.address, ethers.parseEther("100"));
+  await tx1.wait();
+  console.log("Transaction 1 (Owner -> Addr1) Hash:", tx1.hash);
 
-  console.log("\n=== Transaction 1: Transfer 100 MHT (Owner -> Addr1) ===");
-  console.log("From (Owner):", owner.address);
-  console.log("To (Addr1):", addr1.address);
-  const tx1 = await token.transfer(addr1.address, 100);
-  const receipt1 = await tx1.wait();
-  console.log("Tx Hash:", receipt1.hash);
+  // Transaction 2: Success
+  console.log("\n--- Transaction 2: Transferring to Addr2 ---");
+  const tx2 = await token.transfer(addr2.address, ethers.parseEther("50"));
+  await tx2.wait();
+  console.log("Transaction 2 (Owner -> Addr2) Hash:", tx2.hash);
 
-  console.log("\n=== Transaction 2: Transfer 50 MHT (Addr1 -> Addr2) ===");
-  console.log("From (Addr1):", addr1.address);
-  console.log("To (Addr2):", addr2.address);
-  const tx2 = await token.connect(addr1).transfer(addr2.address, 50);
-  const receipt2 = await tx2.wait();
-  console.log("Tx Hash:", receipt2.hash);
-
-  // Final balances
-  console.log("\n=== Final Balances ===");
-  console.log("Deployer:", (await token.balanceOf(owner.address)).toString(), "MHT");
-  console.log("Addr1:", (await token.balanceOf(addr1.address)).toString(), "MHT");
-  console.log("Addr2:", (await token.balanceOf(addr2.address)).toString(), "MHT");
+  // Transaction 3: Failure (Owner tries to send more than totalSupply)
+  try {
+    console.log("\n--- Attempting Transaction 3 (Insufficient Balance) ---");
+    // Owner tries to send 2 million tokens (supply is 1 million)
+    const tx3 = await token.transfer(addr1.address, ethers.parseEther("2000000"));
+    await tx3.wait();
+  } catch (error) {
+    console.log("Transaction 3 Failed as expected!");
+  }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main().catch((error) => { console.error(error); process.exit(1); });

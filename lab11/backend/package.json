@@ -1,0 +1,15 @@
+{
+  "name": "fabric-lab11-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@hyperledger/fabric-gateway": "^1.7.0",
+    "@grpc/grpc-js": "^1.12.6",
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

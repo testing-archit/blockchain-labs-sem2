@@ -1,42 +1,37 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
-
-import "hardhat/console.sol";
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
 
 contract Token {
-
-    string public name = "My Hardhat Token";
-    string public symbol = "MHT";
-    uint256 public totalSupply = 1000000;
-
+    string public name = "Hardhat Token";
+    string public symbol = "HHT";
+    uint8 public decimals = 18;
+    uint256 public totalSupply;
     address public owner;
-    mapping(address => uint256) balances;
-
-    event Transfer(address indexed _from, address indexed _to, uint256 _value);
-
+    
+    mapping(address => uint256) private balances;
+    
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    
     constructor() {
-        balances[msg.sender] = totalSupply;
+        totalSupply = 1000000 * 10**decimals;
         owner = msg.sender;
+        balances[msg.sender] = totalSupply;
+        // Emit mint event
+        emit Transfer(address(0), msg.sender, totalSupply);
     }
-
-    function transfer(address to, uint256 amount) external {
-        require(balances[msg.sender] >= amount, "Not enough tokens");
-
-        console.log(
-            "Transferring from %s to %s %s tokens",
-            msg.sender,
-            to,
-            amount
-        );
-
+    
+    function transfer(address to, uint256 amount) external returns (bool) {
+        require(to != address(0), "Invalid address");
+        require(balances[msg.sender] >= amount, "Insufficient balance");
+        
         balances[msg.sender] -= amount;
         balances[to] += amount;
-
+        
         emit Transfer(msg.sender, to, amount);
+        return true;
     }
-
+    
     function balanceOf(address account) external view returns (uint256) {
         return balances[account];
     }
 }
-
