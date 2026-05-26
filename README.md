@@ -105,12 +105,16 @@ npx hardhat run scripts/deploy.js --network localhost
 
 ⚠️ **Educational Purpose Only** — These contracts are for learning. Do not use in production without proper audits.
 
+## 🎓 Semester Reflection
+
+> "It was a wonderful semester! I have learned a lot of incredible things about smart contracts, Web3, dApps, decentralized storage, and Hyperledger Fabric. Thank you all for a great learning journey. It's time to say goodbye!" 👋✨
+
 ## 👨‍💻 Author
 
 **Archit** — [@testing-archit](https://github.com/testing-archit)
 
 ---
 
-**Last Updated:** April 2026
+**Last Updated:** May 2026
 **Course:** Blockchain Development — Semester 2
 
