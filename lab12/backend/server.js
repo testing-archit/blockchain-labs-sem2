@@ -209,6 +209,10 @@ app.get('/api/history', (req, res) => {
     res.json(txLog);
 });
 
-app.listen(PORT, () => {
-    console.log(`Backend server running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production' && require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Backend server running on http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;

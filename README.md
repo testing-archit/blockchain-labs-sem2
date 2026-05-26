@@ -15,6 +15,9 @@ blockchain-sem2/
 ├── lab8/    CollectibleCertificate NFT Suite (ERC-721)
 ├── lab9/    ERC-1155 RPG Game Lab
 ├── lab10/   VaultStay: IPFS Decentralized Storage
+├── lab11/   Hyperledger Fabric Assessment Suite
+├── lab12/   Multi-Channel Hyperledger Fabric DApp
+├── lab99/   Experimental RPG ERC-1155 Playground
 └── README.md
 ```
 
@@ -55,6 +58,18 @@ Multi-token standard (ERC-1155) implementation for an RPG game inventory system.
 ### [Lab 10: VaultStay - IPFS Decentralized Storage](./lab10/)
 A premium Web3 escrow and decentralized storage platform using IPFS and Solidity.
 **Topics:** IPFS integration, file hashing (AES-256), escrow logic, React + Vite.
+
+### [Lab 11: Hyperledger Fabric Assessment](./lab11/)
+Comprehensive setup and deployment of a Hyperledger Fabric consortium network.
+**Topics:** Docker network setup, Cryptogen tool, Fabric CA, channel creation (`archit`), chaincode deployment, and asset querying.
+
+### [Lab 12: Creating Channels & Deploying Chaincode](./lab12/)
+Full-stack DApp showing multi-channel configuration on Hyperledger Fabric with a premium React dashboard.
+**Topics:** Fabric Gateway SDK, multi-channel architecture (`c1`), ledger history tracking, React UI.
+
+### [Lab 99: Experimental RPG Game Assets](./lab99/)
+Early-stage prototype and experimental playground for ERC-1155 multi-token RPG gaming assets.
+**Topics:** ERC-1155 smart contracts, experimental frontends.
 
 ---
 
