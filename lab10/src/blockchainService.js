@@ -18,13 +18,14 @@ export async function connectWallet() {
       });
     } catch (switchErr) {
       if (switchErr.code === 4902) {
+        const fallbackRpc = import.meta.env.VITE_SEPOLIA_RPC_URL || 'https://ethereum-sepolia-rpc.publicnode.com';
         await window.ethereum.request({
           method: 'wallet_addEthereumChain',
           params: [{
             chainId: '0xaa36a7',
             chainName: 'Sepolia Testnet',
             nativeCurrency: { name: 'SepoliaETH', symbol: 'ETH', decimals: 18 },
-            rpcUrls: ['https://sepolia.infura.io/v3/86edeec464904ef0a823de6a7e32d37b'],
+            rpcUrls: [fallbackRpc],
             blockExplorerUrls: ['https://sepolia.etherscan.io'],
           }],
         });
@@ -46,9 +47,8 @@ export async function connectWallet() {
 
 // ── Get a read-only contract (no wallet needed) ──────────────────────────────
 export function getReadContract() {
-  const provider = new ethers.JsonRpcProvider(
-    'https://sepolia.infura.io/v3/86edeec464904ef0a823de6a7e32d37b'
-  );
+  const fallbackRpc = import.meta.env.VITE_SEPOLIA_RPC_URL || 'https://ethereum-sepolia-rpc.publicnode.com';
+  const provider = new ethers.JsonRpcProvider(fallbackRpc);
   return new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
 }
 

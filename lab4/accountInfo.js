@@ -1,6 +1,9 @@
 const web3 = require("./connect");
 
-const PRIVATE_KEY = "0x93a0ab8a1035aa94b9640b278b5ff89abf56518734945a22b5f0520e9cf738b4";
+const PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY || process.env.PRIVATE_KEY || "YOUR_PRIVATE_KEY";
+if (!PRIVATE_KEY || PRIVATE_KEY === "YOUR_PRIVATE_KEY") {
+  throw new Error("PRIVATE_KEY missing from environment variables");
+}
 const account = web3.eth.accounts.privateKeyToAccount(PRIVATE_KEY);
 const address = account.address;
 

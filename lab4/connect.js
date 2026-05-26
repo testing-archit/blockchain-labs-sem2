@@ -1,10 +1,13 @@
 const { Web3 } = require("web3");
 
-// ⚠️ Rotate this key if it was ever shared
-const INFURA_API_KEY = "86edeec464904ef0a823de6a7e32d37b";
+try {
+  require("dotenv").config();
+} catch (e) {}
 
-if (!INFURA_API_KEY) {
-  throw new Error("INFURA_API_KEY missing");
+const INFURA_API_KEY = process.env.INFURA_API_KEY || "YOUR_INFURA_API_KEY";
+
+if (!INFURA_API_KEY || INFURA_API_KEY === "YOUR_INFURA_API_KEY") {
+  throw new Error("INFURA_API_KEY missing from environment variables");
 }
 
 // Use WebSocket for subscriptions support
